@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "496533308381",
+    "project_id": "world-tickets",
+    "storage_bucket": "world-tickets.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:496533308381:android:24032d04b5623459bfec34",
+        "android_client_info": {
+          "package_name": "com.maad.worldtickets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "496533308381-j2noqqkpmq0ho79ih8g38grqavrvnnrg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnLTVCbYN-Vh2t6-QBMMegnw7v8XUJ_dE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "496533308381-j2noqqkpmq0ho79ih8g38grqavrvnnrg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
