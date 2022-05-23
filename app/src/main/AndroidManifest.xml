@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorldTickets">
         <activity
-            android:name=".MainActivity"
+            android:name=".SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LogoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

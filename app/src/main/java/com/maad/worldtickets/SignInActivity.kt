@@ -2,17 +2,14 @@ package com.maad.worldtickets
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.maad.worldtickets.databinding.ActivityMainBinding
+import com.maad.worldtickets.databinding.ActivitySignInBinding
 
-class MainActivity : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-
     }
 
 }
