@@ -4,12 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/drawable/ic_visibility_dash.xml" value="0.194" />
+        <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/drawable/ic_visibility_off.xml" value="0.2" />
         <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/drawable/ic_visibility_off_black_24dp.xml" value="0.194" />
         <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/drawable/ic_visibility_on.xml" value="0.2" />
         <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/layout/activity_logo.xml" value="0.1921875" />
         <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/layout/activity_main.xml" value="0.1921875" />
         <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/layout/activity_sign_in.xml" value="0.15775972637879435" />
-        <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
+        <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
       </map>
     </option>
   </component>
