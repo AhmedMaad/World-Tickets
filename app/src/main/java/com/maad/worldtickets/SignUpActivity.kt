@@ -1,6 +1,7 @@
 package com.maad.worldtickets
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.MotionEvent
@@ -45,18 +46,18 @@ class SignUpActivity : AppCompatActivity() {
 
         }
 
+        binding.loginTv.setOnClickListener {
+            startActivity(Intent(this, SignInActivity::class.java))
+            finish()
+        }
 
     }
 
     @SuppressLint("ClickableViewAccessibility")
     fun EditText.setDrawableRightTouch(setClickListener: () -> Unit) {
         this.setOnTouchListener(View.OnTouchListener { _, event ->
-            val DRAWABLE_LEFT = 0
-            val DRAWABLE_TOP = 1
-            val DRAWABLE_RIGHT = 2
-            val DRAWABLE_BOTTOM = 3
             if (event.action == MotionEvent.ACTION_UP) {
-                if (event.rawX >= this.right - this.compoundDrawables[DRAWABLE_RIGHT].bounds.width()
+                if (event.rawX >= this.right - this.compoundDrawables[2].bounds.width()
                 ) {
                     setClickListener()
                     return@OnTouchListener true

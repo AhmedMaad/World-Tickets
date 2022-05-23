@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background"
     android:padding="16dp"
     tools:context=".SignUpActivity">
@@ -21,7 +20,6 @@
             android:src="@drawable/logo_2" />
 
         <EditText
-            android:textColor="@color/white"
             android:id="@+id/name_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,10 +27,10 @@
             android:backgroundTint="@color/white"
             android:hint="Enter name"
             android:inputType="textPersonName"
+            android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
         <EditText
-            android:textColor="@color/white"
             android:id="@+id/email_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,10 +38,10 @@
             android:backgroundTint="@color/white"
             android:hint="Email"
             android:inputType="textEmailAddress"
+            android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
         <EditText
-            android:textColor="@color/white"
             android:id="@+id/password_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,6 +50,7 @@
             android:drawableEnd="@drawable/ic_visibility_off"
             android:hint="Password"
             android:inputType="textPassword"
+            android:textColor="@color/white"
             android:textColorHint="@color/white" />
 
         <Button
@@ -76,6 +75,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/login_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Login"
