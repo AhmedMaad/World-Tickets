@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/activity_profile.xml" value="0.1921875" />
+        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable/ic_back.xml" value="0.135" />
+        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/activity_profile.xml" value="0.22" />
+        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/activity_sign_in.xml" value="0.1921875" />
+        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/activity_sign_up.xml" value="0.1921875" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/drawable/ic_calendar.xml" value="0.1745" />
         <entry key="..\:/Work/Freelance/World Tickets/app/src/main/res/drawable/ic_favorites.xml" value="0.161" />
