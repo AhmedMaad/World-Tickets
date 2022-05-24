@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.maad.worldtickets.ui.home.HomeFragment"
+        android:name="com.maad.worldtickets.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_calendar"
-        android:name="com.maad.worldtickets.ui.dashboard.DashboardFragment"
+        android:name="com.maad.worldtickets.CalendarFragment"
         android:label="@string/title_calendar"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_calendar" />
 
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="com.maad.worldtickets.ui.notifications.NotificationsFragment"
+        android:name="com.maad.worldtickets.FavoritesFragment"
         android:label="@string/title_favorites"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_favorites" />
 </navigation>
