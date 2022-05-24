@@ -77,8 +77,8 @@ class SignInActivity : AppCompatActivity() {
                             val editor = getSharedPreferences("settings", MODE_PRIVATE).edit()
                             editor.putString("id", task.result.user!!.getUid())
                             editor.apply()
-                            //startActivity(Intent(this, xActivity::class.java))
-                            //finish()
+                            startActivity(Intent(this, MainActivity::class.java))
+                            finish()
                         } else {
                             binding.progress.visibility = View.INVISIBLE
                             Toast.makeText(
