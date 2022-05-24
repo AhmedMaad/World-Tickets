@@ -10,8 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorldTickets">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".LogoActivity"
             android:exported="false" />
