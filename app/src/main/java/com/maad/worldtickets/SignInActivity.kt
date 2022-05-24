@@ -75,7 +75,7 @@ class SignInActivity : AppCompatActivity() {
                             Toast.makeText(this, "Logged in successfully", Toast.LENGTH_SHORT)
                                 .show()
                             val editor = getSharedPreferences("settings", MODE_PRIVATE).edit()
-                            editor.putString("id", task.result.user!!.getUid())
+                            editor.putString("id", task.result.user!!.uid)
                             editor.apply()
                             startActivity(Intent(this, MainActivity::class.java))
                             finish()

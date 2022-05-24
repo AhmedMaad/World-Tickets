@@ -55,8 +55,10 @@
         android:text="Let's explore what's happening nearby"
         android:textColor="@color/white"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@id/name_tv"
-        app:layout_constraintTop_toBottomOf="@id/name_tv" />
+        app:layout_constraintTop_toBottomOf="@id/name_tv"
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progress"

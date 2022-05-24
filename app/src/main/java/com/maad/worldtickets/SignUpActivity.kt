@@ -98,17 +98,16 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun addUser() {
-        val user = User(name, email)
-        db.collection("users").add(user).addOnSuccessListener {
+        val userId = Firebase.auth.currentUser!!.uid
+        val user = User(userId, name, email)
+        db.collection("users").document(userId).set(user).addOnSuccessListener {
             val prefs = getSharedPreferences("settings", MODE_PRIVATE).edit()
-            prefs.putString("id", it.id)
+            prefs.putString("id", userId)
             prefs.apply()
-            it.update("userId", it.id).addOnSuccessListener {
-                binding.progress.visibility = View.VISIBLE
-                Toast.makeText(this, "Check your email", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this, SignInActivity::class.java))
-                finish()
-            }
+            binding.progress.visibility = View.VISIBLE
+            Toast.makeText(this, "Check your email", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, SignInActivity::class.java))
+            finish()
         }
     }
 
