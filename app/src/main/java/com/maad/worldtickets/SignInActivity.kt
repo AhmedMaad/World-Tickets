@@ -8,6 +8,9 @@ import android.text.InputType
 import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.maad.worldtickets.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
@@ -49,6 +52,42 @@ class SignInActivity : AppCompatActivity() {
         binding.signUpTv.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
+        }
+
+        binding.login.setOnClickListener {
+            //val email = binding.emailEt.text.toString()
+            //val password = binding.passwordEt.text.toString()
+            val email = "atef.ahmed1341@gmail.com"
+            val password = "123456"
+            if (email.isEmpty() || password.isEmpty())
+                Toast.makeText(this, "Fill the fields before login", Toast.LENGTH_SHORT).show()
+            else {
+                binding.progress.visibility = View.VISIBLE
+                val auth = Firebase.auth
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful && !task.result.user!!.isEmailVerified){
+                            Toast.makeText(this, "Verify your email, then login", Toast.LENGTH_SHORT).show()
+                            binding.progress.visibility = View.INVISIBLE
+                        }
+                        else if (task.isSuccessful) {
+                            binding.progress.visibility = View.INVISIBLE
+                            Toast.makeText(this, "Logged in successfully", Toast.LENGTH_SHORT)
+                                .show()
+                            val editor = getSharedPreferences("settings", MODE_PRIVATE).edit()
+                            editor.putString("id", task.result.user!!.getUid())
+                            editor.apply()
+                            //startActivity(Intent(this, xActivity::class.java))
+                            //finish()
+                        } else {
+                            binding.progress.visibility = View.INVISIBLE
+                            Toast.makeText(
+                                this, "Error, check your connection/password",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+            }
         }
 
     }
