@@ -13,10 +13,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.maad.worldtickets.databinding.FragmentHomeBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeFragment : Fragment() {
 
     private lateinit var db: FirebaseFirestore
+    private var days = arrayListOf<DayModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,10 +49,36 @@ class HomeFragment : Fragment() {
             val firstName = parts.firstOrNull()
             binding.nameTv.text = "Hello, $firstName !"
             binding.exploreTv.visibility = View.VISIBLE
-
         }
 
+        for (i in 0..6)
+            days.add(DayModel(0, 0, getCalculatedDate(i)))
+
         return binding.root
+    }
+
+    private fun getCalculatedDate(next: Int): String {
+        val cal = Calendar.getInstance()
+        //val today = "${cal.get(Calendar.DAY_OF_MONTH)}-${cal.get(Calendar.MONTH) + 1}-${cal.get(Calendar.YEAR)}"
+        //Log.d("trace", today)
+        val s = SimpleDateFormat("dd-MM-yyyy")
+        cal.add(Calendar.DAY_OF_YEAR, next)
+
+        Log.d("trace", "All: ${s.format(cal.time)}")
+        val formattedDate = s.format(cal.time)
+        val parts = formattedDate.split("-").toMutableList()
+        val day = parts.firstOrNull()
+        Log.d("trace", day!!)
+
+        //cal.time = cal.time
+        val dayOfWeek = cal[Calendar.DAY_OF_WEEK]
+        Log.d("trace", "$dayOfWeek")
+
+        val dayName = SimpleDateFormat("EE").format(cal.time)
+        Log.d("trace", "$dayName")
+
+
+        return s.format(cal.time)
     }
 
 }
