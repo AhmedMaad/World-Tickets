@@ -8,6 +8,7 @@ class User(
     val userId: String = "",
     val name: String = "",
     val email: String = "",
+    val password: String = "",
     val pp: String = "",
     val phoneNo: String = "",
     val facebookLink: String = ""

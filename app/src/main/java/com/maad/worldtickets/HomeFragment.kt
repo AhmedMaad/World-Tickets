@@ -33,7 +33,6 @@ class HomeFragment : Fragment() {
 
         val prefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
         val id = prefs.getString("id", null)!!
-        Log.d("trace", "ID: $id")
 
         db.collection("users").document(id).get().addOnSuccessListener {
             binding.progress.visibility = View.GONE

@@ -23,6 +23,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private var name = ""
     private var email = ""
+    private var pass = ""
     private lateinit var binding: ActivitySignUpBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +67,7 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.registerBtn.setOnClickListener {
             email = binding.emailEt.text.toString()
-            val pass = binding.passwordEt.text.toString()
+            pass = binding.passwordEt.text.toString()
             name = binding.nameEt.text.toString()
             if (email.isEmpty() || pass.isEmpty() || name.isEmpty()) {
                 if (email.isEmpty())
@@ -99,7 +100,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun addUser() {
         val userId = Firebase.auth.currentUser!!.uid
-        val user = User(userId, name, email)
+        val user = User(userId, name, email, pass)
         db.collection("users").document(userId).set(user).addOnSuccessListener {
             val prefs = getSharedPreferences("settings", MODE_PRIVATE).edit()
             prefs.putString("id", userId)
