@@ -75,7 +75,6 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.saveBtn.setOnClickListener {
-
             updatedName = binding.nameEt.text.toString()
             updatedPassword = binding.passwordEt.text.toString()
             updatedEmail = binding.emailEt.text.toString()
@@ -185,7 +184,6 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun uploadProfile(imageUri: Uri?) {
-
         val pp = imageUri?.toString() ?: user.pp
         user = User(id, updatedName, updatedEmail, updatedPassword, pp, phoneNo, facebookLink)
         db
@@ -196,7 +194,11 @@ class ProfileActivity : AppCompatActivity() {
                 binding.progress.visibility = View.INVISIBLE
                 Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT).show();
             }
+    }
 
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finishAffinity()
     }
 
 }
