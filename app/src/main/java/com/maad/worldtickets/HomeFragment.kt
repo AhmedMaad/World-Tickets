@@ -38,7 +38,6 @@ class HomeFragment : Fragment() {
         val id = prefs.getString("id", null)!!
 
         db.collection("users").document(id).get().addOnSuccessListener {
-            binding.progress.visibility = View.GONE
             val user = it.toObject(User::class.java)!!
             if (user.pp.isEmpty())
                 binding.profileIv.setImageResource(R.drawable.ic_person)
@@ -49,36 +48,36 @@ class HomeFragment : Fragment() {
             val firstName = parts.firstOrNull()
             binding.nameTv.text = "Hello, $firstName !"
             binding.exploreTv.visibility = View.VISIBLE
-        }
 
-        for (i in 0..6)
-            days.add(DayModel(0, 0, getCalculatedDate(i)))
+            for (i in 0..6)
+                getCalculatedDate(i)
+            val adapter = SevenDaysCalendarAdapter(requireActivity(), days)
+            binding.calendarSevenRv.adapter = adapter
+
+            binding.progress.visibility = View.GONE
+        }
 
         return binding.root
     }
 
-    private fun getCalculatedDate(next: Int): String {
+    private fun getCalculatedDate(next: Int) {
         val cal = Calendar.getInstance()
-        //val today = "${cal.get(Calendar.DAY_OF_MONTH)}-${cal.get(Calendar.MONTH) + 1}-${cal.get(Calendar.YEAR)}"
-        //Log.d("trace", today)
         val s = SimpleDateFormat("dd-MM-yyyy")
         cal.add(Calendar.DAY_OF_YEAR, next)
 
-        Log.d("trace", "All: ${s.format(cal.time)}")
+        //Log.d("trace", "All: ${s.format(cal.time)}")
         val formattedDate = s.format(cal.time)
         val parts = formattedDate.split("-").toMutableList()
-        val day = parts.firstOrNull()
-        Log.d("trace", day!!)
+        val day = parts.first()
+        //Log.d("trace", day!!)
 
-        //cal.time = cal.time
-        val dayOfWeek = cal[Calendar.DAY_OF_WEEK]
-        Log.d("trace", "$dayOfWeek")
+        //val dayOfWeek = cal[Calendar.DAY_OF_WEEK]
+        //Log.d("trace", "$dayOfWeek")
 
         val dayName = SimpleDateFormat("EE").format(cal.time)
-        Log.d("trace", "$dayName")
+        //Log.d("trace", "$dayName")
 
-
-        return s.format(cal.time)
+        days.add(DayModel(day, dayName, formattedDate))
     }
 
 }
