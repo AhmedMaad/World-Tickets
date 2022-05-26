@@ -83,6 +83,7 @@
         tools:listitem="@layout/seven_days_calendar_list_item" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/event_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"

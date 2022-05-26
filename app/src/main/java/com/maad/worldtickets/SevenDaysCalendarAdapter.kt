@@ -19,7 +19,7 @@ class SevenDaysCalendarAdapter(
     private var clickedIndex = -1
 
     interface ItemClickListener {
-        fun onItemClick(position: Int, parent: CardView, number: TextView, name: TextView)
+        fun onItemClick(position: Int)
     }
 
     inner class DayVH(view: View) : RecyclerView.ViewHolder(view) {
@@ -29,7 +29,7 @@ class SevenDaysCalendarAdapter(
 
         init {
             view.setOnClickListener {
-                itemClickListener.onItemClick(adapterPosition, parent, number, name)
+                itemClickListener.onItemClick(adapterPosition)
             }
         }
 
@@ -66,6 +66,5 @@ class SevenDaysCalendarAdapter(
     }
 
     override fun getItemCount() = days.size
-
 
 }
