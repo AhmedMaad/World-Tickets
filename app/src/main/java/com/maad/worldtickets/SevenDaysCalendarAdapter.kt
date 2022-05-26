@@ -1,7 +1,5 @@
 package com.maad.worldtickets
 
-import android.app.Activity
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView

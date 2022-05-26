@@ -36,7 +36,7 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
 
         events.add(
             Event(
-                R.drawable.event_image,
+                R.drawable.event_image_2,
                 "Sports Meet in Galaxy Field",
                 "250$",
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
@@ -47,7 +47,7 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
         )
         events.add(
             Event(
-                R.drawable.event_image_2,
+                R.drawable.event_image,
                 "Art & Meet in Street Plaza",
                 "250$",
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
