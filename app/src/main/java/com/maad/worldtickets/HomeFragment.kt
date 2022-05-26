@@ -7,6 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,10 +20,12 @@ import com.maad.worldtickets.databinding.FragmentHomeBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
 
     private lateinit var db: FirebaseFirestore
     private var days = arrayListOf<DayModel>()
+    private lateinit var sevenDaysAdapter: SevenDaysCalendarAdapter
+    //private var clickedIndex = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,8 +57,8 @@ class HomeFragment : Fragment() {
 
             for (i in 0..6)
                 getCalculatedDate(i)
-            val adapter = SevenDaysCalendarAdapter(requireActivity(), days)
-            binding.calendarSevenRv.adapter = adapter
+            sevenDaysAdapter = SevenDaysCalendarAdapter(requireActivity(), days, this)
+            binding.calendarSevenRv.adapter = sevenDaysAdapter
 
             binding.progress.visibility = View.GONE
         }
@@ -78,6 +84,24 @@ class HomeFragment : Fragment() {
         //Log.d("trace", "$dayName")
 
         days.add(DayModel(day, dayName, formattedDate))
+    }
+
+    override fun onItemClick(position: Int, parent: CardView, number: TextView, name: TextView) {
+       /* clickedIndex = position
+        sevenDaysAdapter.notifyDataSetChanged()
+
+        if (position == clickedIndex){
+            number.setTextColor(ContextCompat.getColor(requireActivity(), R.color.dark_blue))
+            name.setTextColor(ContextCompat.getColor(requireActivity(), R.color.dark_blue))
+            parent.setCardBackgroundColor(ContextCompat.getColor(requireActivity(), R.color.gold))
+        }
+        else{
+            number.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white))
+            name.setTextColor(ContextCompat.getColor(requireActivity(), R.color.white))
+            parent.setCardBackgroundColor(ContextCompat.getColor(requireActivity(), R.color.dark_blue))
+        }*/
+
+
     }
 
 }
