@@ -20,8 +20,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/profile_cv"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:visibility="invisible"
         app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="@id/tickets_world_tv"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,5 +93,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/calendar_seven_rv"
         tools:listitem="@layout/event_list_item" />
+
+    <include
+        android:id="@+id/no_events_layout"
+        layout="@layout/no_events"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendar_seven_rv"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

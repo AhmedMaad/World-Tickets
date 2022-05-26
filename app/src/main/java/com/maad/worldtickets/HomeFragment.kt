@@ -25,6 +25,7 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
     private lateinit var sevenDaysAdapter: SevenDaysCalendarAdapter
     private lateinit var binding: FragmentHomeBinding
     private var events = arrayListOf<Event>()
+    private var randomEvents = arrayListOf<Event>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -112,6 +113,7 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
 
         db.collection("users").document(id).get().addOnSuccessListener {
             val user = it.toObject(User::class.java)!!
+            binding.profileCv.visibility = View.VISIBLE
             if (user.pp.isEmpty())
                 binding.profileIv.setImageResource(R.drawable.ic_person)
             else
@@ -152,11 +154,31 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
     override fun onItemClick(position: Int) {
         //Log.d("trace", "Item Clicked from fragment")
 
+        //TODO: show no events avaialbleeeee
+
         sevenDaysAdapter.sendPosition(position)
         sevenDaysAdapter.notifyDataSetChanged()
+        randomEvents.clear()
 
-        val eventAdapter = EventAdapter(requireActivity(), events)
-        binding.eventRv.adapter = eventAdapter
+        when {
+            position == 6 -> {
+                binding.noEventsLayout.root.visibility = View.INVISIBLE
+                val eventAdapter = EventAdapter(requireActivity(), events[3])
+                binding.eventRv.visibility = View.VISIBLE
+                binding.eventRv.adapter = eventAdapter
+            }
+            position != 3 -> {
+                binding.noEventsLayout.root.visibility = View.INVISIBLE
+                val eventAdapter = EventAdapter(requireActivity(), events[position])
+                binding.eventRv.visibility = View.VISIBLE
+                binding.eventRv.adapter = eventAdapter
+            }
+            else -> {
+                binding.eventRv.visibility = View.INVISIBLE
+                binding.noEventsLayout.root.visibility = View.VISIBLE
+            }
+        }
+
     }
 
 }

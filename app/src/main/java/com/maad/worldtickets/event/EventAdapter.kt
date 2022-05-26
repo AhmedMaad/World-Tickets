@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.maad.worldtickets.R
 
-class EventAdapter(val activity: Activity, val events: ArrayList<Event>) :
+class EventAdapter(val activity: Activity, val event: Event) :
     RecyclerView.Adapter<EventAdapter.EventVH>() {
 
     class EventVH(view: View) : RecyclerView.ViewHolder(view) {
@@ -26,18 +26,18 @@ class EventAdapter(val activity: Activity, val events: ArrayList<Event>) :
         EventVH(activity.layoutInflater.inflate(R.layout.event_list_item, parent, false))
 
     override fun onBindViewHolder(holder: EventVH, position: Int) {
-        holder.image.setImageResource(events[position].image)
-        holder.name.text = events[position].title
-        holder.description.text = events[position].description
-        holder.location.text = events[position].location
-        holder.price.text = events[position].price
+        holder.image.setImageResource(event.image)
+        holder.name.text = event.title
+        holder.description.text = event.description
+        holder.location.text = event.location
+        holder.price.text = event.price
         holder.parent.setOnClickListener {
             val i = Intent(activity, EventDetailsActivity::class.java)
-            i.putExtra("event", events[position])
+            i.putExtra("event", event)
             activity.startActivity(i)
         }
     }
 
-    override fun getItemCount() = events.size
+    override fun getItemCount() = 1
 
 }
