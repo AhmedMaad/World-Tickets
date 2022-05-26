@@ -117,7 +117,8 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
             if (user.pp.isEmpty())
                 binding.profileIv.setImageResource(R.drawable.ic_person)
             else
-                Glide.with(requireActivity()).load(user.pp).into(binding.profileIv)
+                Glide.with(requireActivity()).load(user.pp).placeholder(R.drawable.ic_person)
+                    .into(binding.profileIv)
 
             val parts = user.name.split(" ").toMutableList()
             val firstName = parts.firstOrNull()
@@ -153,8 +154,6 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
 
     override fun onItemClick(position: Int) {
         //Log.d("trace", "Item Clicked from fragment")
-
-        //TODO: show no events avaialbleeeee
 
         sevenDaysAdapter.sendPosition(position)
         sevenDaysAdapter.notifyDataSetChanged()
