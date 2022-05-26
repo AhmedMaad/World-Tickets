@@ -50,12 +50,14 @@
 
         <TextView
             android:id="@+id/location_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
             android:drawablePadding="4dp"
             android:textColor="@color/gray"
             app:drawableStartCompat="@drawable/ic_location_gray"
             app:layout_constraintBottom_toBottomOf="@id/price_tv"
+            app:layout_constraintEnd_toStartOf="@id/price_tv"
             app:layout_constraintStart_toStartOf="@id/description_tv"
             app:layout_constraintTop_toTopOf="@id/price_tv"
             tools:text="Greenfields, Sector 42, Faridabad" />
