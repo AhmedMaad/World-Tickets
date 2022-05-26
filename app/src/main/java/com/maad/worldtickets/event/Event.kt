@@ -7,5 +7,6 @@ class Event(
     val description: String,
     val location: String,
     val organizer: String,
-    val website: String
+    val website: String,
+    /*val date: String*/
 )
