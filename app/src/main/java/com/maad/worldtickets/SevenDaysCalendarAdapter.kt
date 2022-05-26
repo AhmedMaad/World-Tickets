@@ -1,6 +1,7 @@
 package com.maad.worldtickets
 
 import android.app.Activity
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -47,22 +48,29 @@ class SevenDaysCalendarAdapter(
         holder.number.text = days[position].number
         holder.name.text = days[position].name
 
-        holder.parent.setOnClickListener {
+        /*holder.parent.setOnClickListener {
+            Log.d("trace", "Item Clicked from adapter")
             clickedIndex = holder.adapterPosition
             notifyDataSetChanged()
-        }
+        }*/
 
         if (holder.adapterPosition == clickedIndex){
+            //Log.d("trace", "Coloring clicked item")
             holder.number.setTextColor(ContextCompat.getColor(activity, R.color.dark_blue))
             holder.name.setTextColor(ContextCompat.getColor(activity, R.color.dark_blue))
             holder.parent.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.gold))
         }
         else{
+            //Log.d("trace", "Resetting everything")
             holder.number.setTextColor(ContextCompat.getColor(activity, R.color.white))
             holder.name.setTextColor(ContextCompat.getColor(activity, R.color.white))
             holder.parent.setCardBackgroundColor(ContextCompat.getColor(activity, R.color.dark_blue))
         }
 
+    }
+
+    fun sendPosition(position: Int){
+        clickedIndex = position
     }
 
     override fun getItemCount() = days.size

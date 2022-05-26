@@ -111,6 +111,7 @@ class ProfileActivity : AppCompatActivity() {
         user!!.updateEmail(updatedEmail)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    sendVerificationLink()
                     Toast.makeText(this, "Email updated", Toast.LENGTH_SHORT).show()
                     user.updatePassword(updatedPassword)
                         .addOnCompleteListener { task2 ->
@@ -132,6 +133,7 @@ class ProfileActivity : AppCompatActivity() {
         user!!.updateEmail(updatedEmail)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    sendVerificationLink()
                     Toast.makeText(this, "Email updated", Toast.LENGTH_SHORT).show()
                     if (imageUri != null) uploadImage() else uploadProfile(null)
                 } else {
@@ -199,6 +201,15 @@ class ProfileActivity : AppCompatActivity() {
     override fun onBackPressed() {
         startActivity(Intent(this, MainActivity::class.java))
         finishAffinity()
+    }
+
+    private fun sendVerificationLink() {
+        val user = Firebase.auth.currentUser
+        user!!.sendEmailVerification()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful)
+                    Toast.makeText(this, "Verify your email", Toast.LENGTH_SHORT).show();
+            }
     }
 
 }
