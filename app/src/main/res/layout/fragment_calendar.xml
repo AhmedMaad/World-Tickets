@@ -4,16 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="16dp"
-    android:paddingEnd="8dp"
-    android:paddingBottom="16dp"
+    android:padding="16dp"
     tools:context=".CalendarFragment">
 
     <TextView
         android:id="@+id/calendar_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Calendar"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -23,11 +20,10 @@
 
     <DatePicker
         android:id="@+id/calendar"
-        style="@style/CalendarStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:calendarTextColor="@color/gold"
+        android:layout_marginTop="8dp"
+        android:theme="@style/DialogTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/calendar_tv" />
@@ -36,7 +32,7 @@
         android:id="@+id/day_event_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="This Day's Events"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -53,6 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/calendar"
         app:layout_constraintStart_toStartOf="@id/day_event_tv"
-        app:layout_constraintTop_toBottomOf="@id/day_event_tv" />
+        app:layout_constraintTop_toBottomOf="@id/day_event_tv"
+        tools:listitem="@layout/calendar_event_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
