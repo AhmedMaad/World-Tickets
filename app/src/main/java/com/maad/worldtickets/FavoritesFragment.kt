@@ -1,14 +1,20 @@
 package com.maad.worldtickets
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -21,6 +27,12 @@ class FavoritesFragment : Fragment() {
     private lateinit var db: FirebaseFirestore
     private var events = arrayListOf<Event>()
     val favEvent = arrayListOf<Event>()
+    lateinit var binding: FragmentFavoritesBinding
+    var techCounter = 0
+    var musicCounter = 0
+    var sportsCounter = 0
+    var artCounter = 0
+    var carCounter = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +40,7 @@ class FavoritesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         db = Firebase.firestore
-        val binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        binding = FragmentFavoritesBinding.inflate(inflater, container, false)
 
         events.add(
             Event(
@@ -51,7 +63,7 @@ class FavoritesFragment : Fragment() {
                 "Greenfields, Sector 42, Faridabad",
                 "Y Company Organizer",
                 "https://www.planningpod.com/online-event-booking-software.cfm",
-                "Sports"
+                "Arts"
             )
         )
         events.add(
@@ -108,9 +120,10 @@ class FavoritesFragment : Fragment() {
         //else show the recycler view
         val editor =
             requireContext().getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
+        val userId = editor.getString("id", null)!!
         db
             .collection("users")
-            .document(editor.getString("id", null)!!)
+            .document(userId)
             .get()
             .addOnSuccessListener {
                 binding.progress.visibility = View.INVISIBLE
@@ -140,12 +153,93 @@ class FavoritesFragment : Fragment() {
             //then send them as an "update" to user object in firebase using user id, and
             //"favorites" as a field
             //Clicking "Save my Favorites" will show progress bar while uploading to firebase
-            val bottomUp: Animation = AnimationUtils.loadAnimation(context, R.anim.slide_up)
-            binding.emptyFavoritesLayout.root.startAnimation(bottomUp)
-            binding.emptyFavoritesLayout.root.visibility = View.VISIBLE
+            val bottomUp = AnimationUtils.loadAnimation(context, R.anim.slide_up)
+            binding.chooseFavoritesLayout.root.startAnimation(bottomUp)
+            binding.chooseFavoritesLayout.root.visibility = View.VISIBLE
         }
 
+        binding.root.setOnClickListener {
+            if (binding.chooseFavoritesLayout.root.visibility == View.VISIBLE) {
+                val slideDown = AnimationUtils.loadAnimation(context, R.anim.slide_down)
+                binding.chooseFavoritesLayout.root.startAnimation(slideDown)
+                binding.chooseFavoritesLayout.root.visibility = View.INVISIBLE
+            }
+        }
+
+        binding.chooseFavoritesLayout.artsBtn.setOnClickListener {
+            if (artCounter % 2 == 0)
+                changeBtnBG(binding.chooseFavoritesLayout.artsBtn, R.drawable.border_dark_blue)
+            else
+                changeBtnBG(binding.chooseFavoritesLayout.artsBtn, R.drawable.border_blue)
+            ++artCounter
+        }
+
+        binding.chooseFavoritesLayout.carsBtn.setOnClickListener {
+            if (carCounter % 2 == 0)
+                changeBtnBG(binding.chooseFavoritesLayout.carsBtn, R.drawable.border_dark_blue)
+            else
+                changeBtnBG(binding.chooseFavoritesLayout.carsBtn, R.drawable.border_blue)
+            ++carCounter
+        }
+
+        binding.chooseFavoritesLayout.musicBtn.setOnClickListener {
+            if (musicCounter % 2 == 0)
+                changeBtnBG(binding.chooseFavoritesLayout.musicBtn, R.drawable.border_dark_blue)
+            else
+                changeBtnBG(binding.chooseFavoritesLayout.musicBtn, R.drawable.border_blue)
+            ++musicCounter
+        }
+
+        binding.chooseFavoritesLayout.sportsBtn.setOnClickListener {
+            if (sportsCounter % 2 == 0)
+                changeBtnBG(binding.chooseFavoritesLayout.sportsBtn, R.drawable.border_dark_blue)
+            else
+                changeBtnBG(binding.chooseFavoritesLayout.sportsBtn, R.drawable.border_blue)
+            ++sportsCounter
+        }
+
+        binding.chooseFavoritesLayout.techBtn.setOnClickListener {
+            if (techCounter % 2 == 0)
+                changeBtnBG(binding.chooseFavoritesLayout.techBtn, R.drawable.border_dark_blue)
+            else
+                changeBtnBG(binding.chooseFavoritesLayout.techBtn, R.drawable.border_blue)
+            ++techCounter
+        }
+
+        binding.chooseFavoritesLayout.saveFavoritesBtn.setOnClickListener {
+            binding.progress.visibility = View.VISIBLE
+            val favList = arrayListOf<String>()
+            if (artCounter % 2 != 0)
+                favList.add("Arts")
+            if (carCounter % 2 != 0)
+                favList.add("Cars")
+            if (musicCounter % 2 != 0)
+                favList.add("Music")
+            if (sportsCounter % 2 != 0)
+                favList.add("Sports")
+            if (techCounter % 2 != 0)
+                favList.add("Technology")
+
+            db.collection("users").document(userId).update("favorites", favList)
+                .addOnSuccessListener {
+                    binding.progress.visibility = View.INVISIBLE
+                    Toast.makeText(activity, "Favorites Added", Toast.LENGTH_SHORT).show()
+                    val navController: NavController =
+                        requireActivity().findNavController(R.id.nav_view)
+                    navController.run {
+                        popBackStack()
+                        navigate(R.id.navigation_favorites)
+                    }
+                }
+
+        }
+
+
         return binding.root
+    }
+
+    private fun changeBtnBG(btn: AppCompatButton, @DrawableRes borderFile: Int) {
+        btn.background = ActivityCompat.getDrawable(requireContext(), borderFile)
     }
 
 }
