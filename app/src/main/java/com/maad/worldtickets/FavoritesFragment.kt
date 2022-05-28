@@ -35,6 +35,7 @@ class FavoritesFragment : Fragment() {
     var artCounter = 0
     var carCounter = 0
     private lateinit var favorites: ArrayList<String>
+    private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -117,72 +118,48 @@ class FavoritesFragment : Fragment() {
             )
         )
 
-        //retrieve fav from firebase
-        //if array is empty then show "empty fav layout" (save fav on firebase)
-        //else show the recycler view
-        val editor =
-            requireContext().getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
-        val userId = editor.getString("id", null)!!
-        db
-            .collection("users")
-            .document(userId)
-            .get()
-            .addOnSuccessListener {
-                binding.progress.visibility = View.INVISIBLE
-                val user = it.toObject(User::class.java)!!
-                favorites = user.favorites
-                if (favorites.isEmpty()) {
-                    binding.emptyFavoritesLayout.root.visibility = View.VISIBLE
-                    binding.favoritesRv.visibility = View.INVISIBLE
-                } else {
-                    binding.editTv.visibility = View.VISIBLE
-                    binding.emptyFavoritesLayout.root.visibility = View.INVISIBLE
-                    binding.favoritesRv.visibility = View.VISIBLE
-                    //connect to adapter after looping
-                    for (fav in user.favorites) {
-                        for (event in events){
-                            Log.d("trace", "User Fav: $fav, Stored event Cat: ${event.category}")
-                            if (fav == event.category){
-                                favEvent.add(event)
-                                Log.d("trace", "Fav. item is added")
-                            }
-
-                        }
-
-                    }
-                    val adapter = FavoriteEventAdapter(requireActivity(), favEvent)
-                    binding.favoritesRv.adapter = adapter
-
-
-                }
-            }
+        getFavorites()
 
         binding.editTv.setOnClickListener {
             val bottomUp = AnimationUtils.loadAnimation(context, R.anim.slide_up)
             binding.chooseFavoritesLayout.root.startAnimation(bottomUp)
             binding.chooseFavoritesLayout.root.visibility = View.VISIBLE
-            //TODO: check on previously chosen data
-            for (fav in favorites){
+            for (fav in favorites) {
                 when (fav) {
                     "Arts" -> {
                         artCounter = 1
-                        changeBtnBG(binding.chooseFavoritesLayout.artsBtn, R.drawable.border_dark_blue)
+                        changeBtnBG(
+                            binding.chooseFavoritesLayout.artsBtn,
+                            R.drawable.border_dark_blue
+                        )
                     }
                     "Cars" -> {
                         carCounter = 1
-                        changeBtnBG(binding.chooseFavoritesLayout.carsBtn, R.drawable.border_dark_blue)
+                        changeBtnBG(
+                            binding.chooseFavoritesLayout.carsBtn,
+                            R.drawable.border_dark_blue
+                        )
                     }
                     "Music" -> {
                         musicCounter = 1
-                        changeBtnBG(binding.chooseFavoritesLayout.musicBtn, R.drawable.border_dark_blue)
+                        changeBtnBG(
+                            binding.chooseFavoritesLayout.musicBtn,
+                            R.drawable.border_dark_blue
+                        )
                     }
                     "Sports" -> {
                         sportsCounter = 1
-                        changeBtnBG(binding.chooseFavoritesLayout.sportsBtn, R.drawable.border_dark_blue)
+                        changeBtnBG(
+                            binding.chooseFavoritesLayout.sportsBtn,
+                            R.drawable.border_dark_blue
+                        )
                     }
                     "Technology" -> {
                         techCounter = 1
-                        changeBtnBG(binding.chooseFavoritesLayout.techBtn, R.drawable.border_dark_blue)
+                        changeBtnBG(
+                            binding.chooseFavoritesLayout.techBtn,
+                            R.drawable.border_dark_blue
+                        )
                     }
                 }
             }
@@ -259,18 +236,48 @@ class FavoritesFragment : Fragment() {
             db.collection("users").document(userId).update("favorites", favList)
                 .addOnSuccessListener {
                     binding.progress.visibility = View.INVISIBLE
-                    Toast.makeText(activity, "Favorites Added", Toast.LENGTH_SHORT).show()
-                    val navController: NavController =
-                        requireActivity().findNavController(R.id.nav_view)
-                    navController.run {
-                        popBackStack()
-                        navigate(R.id.navigation_favorites)
-                    }
+                    Toast.makeText(activity, "Favorites Edited", Toast.LENGTH_SHORT).show()
+
+                    binding.chooseFavoritesLayout.root.visibility = View.GONE
+                    getFavorites()
+
+
                 }
 
         }
 
         return binding.root
+    }
+
+    private fun getFavorites() {
+        binding.progress.visibility = View.VISIBLE
+        val editor =
+            requireContext().getSharedPreferences("settings", AppCompatActivity.MODE_PRIVATE)
+        userId = editor.getString("id", null)!!
+        db
+            .collection("users")
+            .document(userId)
+            .get()
+            .addOnSuccessListener {
+                binding.progress.visibility = View.INVISIBLE
+                val user = it.toObject(User::class.java)!!
+                favorites = user.favorites
+                if (favorites.isEmpty()) {
+                    binding.emptyFavoritesLayout.root.visibility = View.VISIBLE
+                    binding.favoritesRv.visibility = View.INVISIBLE
+                } else {
+                    binding.editTv.visibility = View.VISIBLE
+                    binding.emptyFavoritesLayout.root.visibility = View.INVISIBLE
+                    binding.favoritesRv.visibility = View.VISIBLE
+                    favEvent.clear()
+                    for (fav in user.favorites)
+                        for (event in events)
+                            if (fav == event.category)
+                                favEvent.add(event)
+                    val adapter = FavoriteEventAdapter(requireActivity(), favEvent)
+                    binding.favoritesRv.adapter = adapter
+                }
+            }
     }
 
     private fun changeBtnBG(btn: AppCompatButton, @DrawableRes borderFile: Int) {
