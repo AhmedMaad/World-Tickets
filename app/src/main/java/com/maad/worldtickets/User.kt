@@ -12,5 +12,5 @@ class User(
     val pp: String = "",
     val phoneNo: String = "",
     val facebookLink: String = "",
-    val favorites: Array<String> = arrayOf()
+    val favorites: ArrayList<String> = arrayListOf()
 ) : Parcelable

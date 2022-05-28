@@ -82,6 +82,8 @@ class SignUpActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful)
                             sendVerificationLink()
+                        else
+                            Toast.makeText(this, "An error has occurred", Toast.LENGTH_SHORT).show();
                     }
             }
 
@@ -105,7 +107,7 @@ class SignUpActivity : AppCompatActivity() {
             val prefs = getSharedPreferences("settings", MODE_PRIVATE).edit()
             prefs.putString("id", userId)
             prefs.apply()
-            binding.progress.visibility = View.VISIBLE
+            binding.progress.visibility = View.INVISIBLE
             Toast.makeText(this, "Check your email", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, SignInActivity::class.java))
             finish()

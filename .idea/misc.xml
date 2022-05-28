@@ -4,22 +4,26 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable-v24/ic_location_blue.xml" value="0.195" />
+        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable/border.xml" value="0.1765" />
+        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable/container.xml" value="0.161" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable/ic_back.xml" value="0.135" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable/ic_calendar.xml" value="0.2" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable/ic_calendar_gold.xml" value="0.2" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable/ic_discard.xml" value="0.1695" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable/ic_location_blue.xml" value="0.1765" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable/ic_location_gray.xml" value="0.2" />
+        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/drawable/ic_person.xml" value="0.161" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/activity_event_details.xml" value="0.25" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/activity_profile.xml" value="0.1921875" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/activity_sign_in.xml" value="0.1921875" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/activity_sign_up.xml" value="0.1921875" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/calendar_event_list_item.xml" value="0.25" />
+        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/choose_favorites_layout.xml" value="0.25" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/empty_favorites_layout.xml" value="0.25" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/event_list_item.xml" value="0.22" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/fragment_calendar.xml" value="0.15775972637879435" />
-        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/fragment_favorites.xml" value="0.15775972637879435" />
+        <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/fragment_favorites.xml" value="0.25" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/fragment_home.xml" value="0.15775972637879435" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/no_events.xml" value="0.15775972637879435" />
         <entry key="..\:/Work/Freelance/Tickets World/app/src/main/res/layout/seven_days_calendar_list_item.xml" value="0.5" />

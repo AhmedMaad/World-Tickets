@@ -13,5 +13,6 @@ class Event(
     val location: String,
     val organizer: String,
     val website: String,
+    val category: String,
     /*val date: String*/
 ) : Parcelable

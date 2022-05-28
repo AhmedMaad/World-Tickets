@@ -43,7 +43,8 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
                 "Greenfields, Sector 42, Faridabad",
                 "X Company Organizer",
-                "https://www.eventpro.net/online-epconnect-suite.html"
+                "https://www.eventpro.net/online-epconnect-suite.html",
+                "Sports"
             )
         )
         events.add(
@@ -54,8 +55,9 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
                 "Greenfields, Sector 42, Faridabad",
                 "Y Company Organizer",
-                "https://www.planningpod.com/online-event-booking-software.cfm"
-            )
+                "https://www.planningpod.com/online-event-booking-software.cfm",
+                "Sports"
+                )
         )
         events.add(
             Event(
@@ -65,7 +67,8 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
                 "Place parallel to the physical world",
                 "Metaverser",
-                "https://about.facebook.com/meta/"
+                "https://about.facebook.com/meta/",
+                "Technology"
             )
         )
         events.add(
@@ -76,7 +79,8 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
                 "Manchester, United Kingdom, Stretford, United Kingdom",
                 "2022 Graduates",
-                "https://www.healthcareconferencesuk.co.uk/virtual-online-courses/amat-clinical-audit-conference"
+                "https://www.healthcareconferencesuk.co.uk/virtual-online-courses/amat-clinical-audit-conference",
+                "Music"
             )
         )
         events.add(
@@ -87,7 +91,8 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
                 "Manchester, United Kingdom, Stretford, United Kingdom",
                 "WWCC",
-                "https://www.automech-formula.com/en/home.html"
+                "https://www.automech-formula.com/en/home.html",
+                "Cars"
             )
         )
         events.add(
@@ -98,7 +103,8 @@ class HomeFragment : Fragment(), SevenDaysCalendarAdapter.ItemClickListener {
                 "bring Formula 1's Sprint format to next year's event at the Baku City Circuit.",
                 "Manchester, United Kingdom, Stretford, United Kingdom",
                 "Azerbaijan Grand Prix organisers",
-                "https://www.formula1.com/en/racing/2022.html"
+                "https://www.formula1.com/en/racing/2022.html",
+                "Sports"
             )
         )
 
