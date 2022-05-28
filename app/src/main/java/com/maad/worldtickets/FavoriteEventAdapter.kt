@@ -40,6 +40,6 @@ class FavoriteEventAdapter(val activity: Activity, val events: ArrayList<Event>)
         }
     }
 
-    override fun getItemCount() = 1
+    override fun getItemCount() = events.size
 
 }

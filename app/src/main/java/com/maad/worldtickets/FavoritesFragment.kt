@@ -1,6 +1,7 @@
 package com.maad.worldtickets
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,6 +34,7 @@ class FavoritesFragment : Fragment() {
     var sportsCounter = 0
     var artCounter = 0
     var carCounter = 0
+    private lateinit var favorites: ArrayList<String>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -128,18 +130,25 @@ class FavoritesFragment : Fragment() {
             .addOnSuccessListener {
                 binding.progress.visibility = View.INVISIBLE
                 val user = it.toObject(User::class.java)!!
-                val favorites = user.favorites
+                favorites = user.favorites
                 if (favorites.isEmpty()) {
                     binding.emptyFavoritesLayout.root.visibility = View.VISIBLE
                     binding.favoritesRv.visibility = View.INVISIBLE
                 } else {
+                    binding.editTv.visibility = View.VISIBLE
                     binding.emptyFavoritesLayout.root.visibility = View.INVISIBLE
                     binding.favoritesRv.visibility = View.VISIBLE
                     //connect to adapter after looping
                     for (fav in user.favorites) {
-                        for (event in events)
-                            if (fav == event.category)
+                        for (event in events){
+                            Log.d("trace", "User Fav: $fav, Stored event Cat: ${event.category}")
+                            if (fav == event.category){
                                 favEvent.add(event)
+                                Log.d("trace", "Fav. item is added")
+                            }
+
+                        }
+
                     }
                     val adapter = FavoriteEventAdapter(requireActivity(), favEvent)
                     binding.favoritesRv.adapter = adapter
@@ -148,11 +157,38 @@ class FavoritesFragment : Fragment() {
                 }
             }
 
+        binding.editTv.setOnClickListener {
+            val bottomUp = AnimationUtils.loadAnimation(context, R.anim.slide_up)
+            binding.chooseFavoritesLayout.root.startAnimation(bottomUp)
+            binding.chooseFavoritesLayout.root.visibility = View.VISIBLE
+            //TODO: check on previously chosen data
+            for (fav in favorites){
+                when (fav) {
+                    "Arts" -> {
+                        artCounter = 1
+                        changeBtnBG(binding.chooseFavoritesLayout.artsBtn, R.drawable.border_dark_blue)
+                    }
+                    "Cars" -> {
+                        carCounter = 1
+                        changeBtnBG(binding.chooseFavoritesLayout.carsBtn, R.drawable.border_dark_blue)
+                    }
+                    "Music" -> {
+                        musicCounter = 1
+                        changeBtnBG(binding.chooseFavoritesLayout.musicBtn, R.drawable.border_dark_blue)
+                    }
+                    "Sports" -> {
+                        sportsCounter = 1
+                        changeBtnBG(binding.chooseFavoritesLayout.sportsBtn, R.drawable.border_dark_blue)
+                    }
+                    "Technology" -> {
+                        techCounter = 1
+                        changeBtnBG(binding.chooseFavoritesLayout.techBtn, R.drawable.border_dark_blue)
+                    }
+                }
+            }
+        }
+
         binding.emptyFavoritesLayout.chooseFavorites.setOnClickListener {
-            //show weired dialog, and after choosing store all choices in array of strings
-            //then send them as an "update" to user object in firebase using user id, and
-            //"favorites" as a field
-            //Clicking "Save my Favorites" will show progress bar while uploading to firebase
             val bottomUp = AnimationUtils.loadAnimation(context, R.anim.slide_up)
             binding.chooseFavoritesLayout.root.startAnimation(bottomUp)
             binding.chooseFavoritesLayout.root.visibility = View.VISIBLE
@@ -233,7 +269,6 @@ class FavoritesFragment : Fragment() {
                 }
 
         }
-
 
         return binding.root
     }
