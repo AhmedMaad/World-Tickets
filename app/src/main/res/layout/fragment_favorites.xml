@@ -50,9 +50,11 @@
     <include
         android:id="@+id/empty_favorites_layout"
         layout="@layout/empty_favorites_layout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@id/favorites_rv"
+        app:layout_constraintStart_toStartOf="@id/favorites_tv"
         tools:visibility="visible" />
 
     <include

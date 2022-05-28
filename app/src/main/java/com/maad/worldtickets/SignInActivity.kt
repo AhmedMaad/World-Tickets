@@ -55,10 +55,8 @@ class SignInActivity : AppCompatActivity() {
         }
 
         binding.login.setOnClickListener {
-            //val email = binding.emailEt.text.toString()
-            //val password = binding.passwordEt.text.toString()
-            val email = "atef.ahmed1341@gmail.com"
-            val password = "123456"
+            val email = binding.emailEt.text.toString()
+            val password = binding.passwordEt.text.toString()
             if (email.isEmpty() || password.isEmpty())
                 Toast.makeText(this, "Fill the fields before login", Toast.LENGTH_SHORT).show()
             else {
